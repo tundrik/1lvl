@@ -11,7 +11,6 @@ import (
 	"math"
 )
 
-
 type Point struct {
 	x float64
 	y float64
@@ -36,6 +35,7 @@ func main() {
 	fmt.Println(p2.distance(p1))
 	fmt.Println(p1.distance(p1))
 }
+
 // 74.24957912338628
 // 74.24957912338628
 // 0

@@ -9,11 +9,11 @@ import (
 )
 
 // возвращает пересечение переданных слайсов
-// линейная сложность + доп память 
+// линейная сложность + доп память
 func intersection(s1 []string, s2 []string) []string {
 	res := []string{}
 	hash := map[string]struct{}{}
-	
+
 	// это должно сэкономить доп память
 	if len(s1) > len(s2) {
 		s1, s2 = s2, s1
@@ -21,12 +21,12 @@ func intersection(s1 []string, s2 []string) []string {
 	for _, e := range s1 {
 		// ложим каждое значение s1
 		// в качестве ключа
-		hash[e] = struct{}{} 
+		hash[e] = struct{}{}
 	}
 
 	for _, e := range s2 {
 		if _, ok := hash[e]; ok {
-			// если хеш значения из s2 
+			// если хеш значения из s2
 			// и хеш значения из s1
 			// совпадают
 			// добавляем в результат

@@ -19,11 +19,11 @@ func main() {
 
 	wg := sync.WaitGroup{}
 	wg.Add(5)
-	
+
 	for i := range source {
 		go func(i int) {
-			// атомарно прибавляем 
-			atomic.AddInt64(&sum, source[i] * source[i])
+			// атомарно прибавляем
+			atomic.AddInt64(&sum, source[i]*source[i])
 			wg.Done()
 		}(i)
 	}

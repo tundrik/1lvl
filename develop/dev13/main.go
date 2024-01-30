@@ -8,17 +8,17 @@ import (
 	"fmt"
 )
 
-func swap(a, b int){
+func swap(a, b int) {
 	// вроде тоже что и a, b = b, a
 	fmt.Printf("a %d b %d\n", a, b)
-    a = a ^ b
-    b = a ^ b
-    a = a ^ b
+	a = a ^ b
+	b = a ^ b
+	a = a ^ b
 	fmt.Printf("a %d b %d\n", a, b)
 }
 
-func swap1(a, b int){
-	// будет проблема если результат сложения 
+func swap1(a, b int) {
+	// будет проблема если результат сложения
 	// не влезет в int
 	fmt.Printf("a %d b %d\n", a, b)
 	b = a + b
@@ -28,6 +28,6 @@ func swap1(a, b int){
 }
 
 func main() {
-    swap(23, -45)
+	swap(23, -45)
 	swap1(23, -45)
 }

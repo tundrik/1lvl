@@ -12,7 +12,7 @@ import (
 	"sync/atomic"
 )
 
-// Statistic структура для хранения 
+// Statistic структура для хранения
 // количества событий
 type Statistic struct {
 	event atomic.Uint64
@@ -24,7 +24,7 @@ func New() Statistic {
 	}
 }
 
-// Event атомарно увеличевает 
+// Event атомарно увеличевает
 // количество событий на 1
 func (s *Statistic) Event() {
 	s.event.Add(1)

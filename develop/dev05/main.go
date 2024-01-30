@@ -26,12 +26,12 @@ func main() {
 	ch := make(chan string)
 
 	go consumer(ch)
-	
+
 	for {
 		select {
 		case <-deadline:
 			// завершаем
-            return
+			return
 
 		default:
 			time.Sleep(200 * time.Millisecond)

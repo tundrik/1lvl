@@ -12,8 +12,8 @@ import (
 
 type human struct{}
 
-func (c human) String() string { 
-	return "I human" 
+func (c human) String() string {
+	return "I human"
 }
 
 func whatTypeAmI(i interface{}) {
@@ -44,4 +44,3 @@ func main() {
 	whatTypeAmI(human{})
 	whatTypeAmI(nil)
 }
-

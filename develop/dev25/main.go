@@ -9,7 +9,6 @@ import (
 	"time"
 )
 
-
 func sleep(value time.Duration) {
 	<-time.After(value)
 }

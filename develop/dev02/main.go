@@ -12,60 +12,59 @@ import (
 	"sync"
 )
 
-
-
 func main() {
 	source := [...]uint32{2, 4, 6, 8, 10, 12, 14, 16, 18, 20, 22, 24, 26}
-    
-	numCpu := runtime.NumCPU() 
+
+	numCpu := runtime.NumCPU()
 
 	// пробуем разделить исходную задачу
 	// на разумное количество горутин
 	//
-	// если будет остаток посчитаем остаток 
-	// в main 
+	// если будет остаток посчитаем остаток
+	// в main
 	// смотрите ниже
-    part := len(source) / numCpu
+	part := len(source) / numCpu
 
 	wg := sync.WaitGroup{}
 
 	for i := 0; i < numCpu; i++ {
 		// запустим количество горутин равное NumCPU
 		//
-        // каждая горутина будет работать в рамках 
-		// своего диапазона 
+		// каждая горутина будет работать в рамках
+		// своего диапазона
 
-        // увеличим счетчик
+		// увеличим счетчик
 		wg.Add(1)
 
 		go func(i int) {
 			// отложим уменьшение счетчика
-            defer wg.Done()
+			defer wg.Done()
 
 			offset := part * i // смещение откуда начинать
-			for j := offset; j < offset + part; j++ {
+			for j := offset; j < offset+part; j++ {
 				// мутируем елемент исходного масива
-				source[j] *= source[j] 
+				source[j] *= source[j]
 
 				fmt.Printf("G%d index %d\n", i, j)
 			}
 		}(i)
 	}
 
-    // если есть остаток то считаем
-	for i := numCpu * part; i < len(source) ; i++ {
+	// если есть остаток то считаем
+	for i := numCpu * part; i < len(source); i++ {
 		// мутируем елемент исходного масива
-		source[i] *= source[i] 
+		source[i] *= source[i]
 
 		fmt.Printf("Gmain index %d \n", i)
 	}
 
-    // ждем горутин
-    wg.Wait()
+	// ждем горутин
+	wg.Wait()
 
 	fmt.Printf("%v \n", source)
 }
-//Gmain index 12 
+
+//Gmain index 12
 //G0 index 0
 //G0 index 1
 //G0 index 2
@@ -78,4 +77,4 @@ func main() {
 //G2 index 8
 //G1 index 4
 //G1 index 5
-//[4 16 36 64 100 144 196 256 324 400 484 576 676] 
+//[4 16 36 64 100 144 196 256 324 400 484 576 676]

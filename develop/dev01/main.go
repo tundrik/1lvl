@@ -8,7 +8,6 @@ package main
 
 import "fmt"
 
-
 type Human struct {
 	name string
 }

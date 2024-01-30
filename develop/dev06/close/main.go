@@ -2,9 +2,9 @@
 *	6) Реализовать все возможные способы остановки выполнения горутины.
 *
 ********************************************************************
-*    
+*
 *	6-close) Вариант с передачей канала в горутину и последующим его закрытием.
-*   Подходит если писатель в канал один     
+*   Подходит если писатель в канал один
 *
 ********/
 package main
@@ -17,7 +17,7 @@ import (
 // завершает если канал закрыт
 func receiver(ch <-chan string) {
 	for {
-		msg, ok := <-ch 
+		msg, ok := <-ch
 		if !ok { // канал закрыт, msg nil
 			fmt.Printf("ok: %v\n", ok)
 			return
@@ -35,10 +35,11 @@ func main() {
 	ch <- "2 countdown"
 	ch <- "1 countdown"
 
-    close(ch)
+	close(ch)
 
 	time.Sleep(time.Millisecond)
 }
+
 // msg: 3 countdown, ok: true
 // msg: 2 countdown, ok: true
 // msg: 1 countdown, ok: true

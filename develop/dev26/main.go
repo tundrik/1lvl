@@ -19,7 +19,7 @@ import (
 // проверяет, что все символы в строке уникальные
 func hasUnique(s string) bool {
 	hash := make(map[rune]struct{})
-    ls := strings.ToLower(s)
+	ls := strings.ToLower(s)
 
 	for _, c := range ls {
 		if _, ok := hash[c]; ok {
