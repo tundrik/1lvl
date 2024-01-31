@@ -30,6 +30,7 @@ func someFunc() string {
 
 	// justString = v[:100]
 	// Утечка памяти, вызванная подстроками
+	// https://research.swtch.com/godata#:~:text=original%20keeps%20the%20entire%20original%20string%20in%20memory%20even%20though%20only%20a%20small%20amount%20is%20still%20needed
 	//
 	// https://go101.org/article/memory-leaking.html
 	//
