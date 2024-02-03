@@ -8,7 +8,7 @@ func someAction(v []int8, b int8) {
 }
 
 func main() {
-	a := make([]int8, 2, 3)
+	a := make([]int8, 1, 3)
 	fmt.Println(len(a))
 	fmt.Println(cap(a))
 
@@ -22,5 +22,5 @@ func main() {
 	fmt.Println(len(a))
 	fmt.Println(cap(a))
 
-	fmt.Println(a[:3])
+	fmt.Println(a)
 }
