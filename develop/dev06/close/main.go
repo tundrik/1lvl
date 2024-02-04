@@ -18,8 +18,8 @@ import (
 func receiver(ch <-chan string) {
 	for {
 		msg, ok := <-ch
-		if !ok { // канал закрыт, msg nil
-			fmt.Printf("ok: %v\n", ok)
+		if !ok { // канал закрыт
+			fmt.Printf("msg: %v, ok: %v\n", msg, ok)
 			return
 		}
 		fmt.Printf("msg: %v, ok: %v\n", msg, ok)

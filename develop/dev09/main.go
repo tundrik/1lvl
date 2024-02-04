@@ -12,7 +12,7 @@ import (
 )
 
 // начальный этап конвеера
-func genesis(source [13]int) <-chan int {
+func genesis(source []int) <-chan int {
 	ch := make(chan int)
 	go func() {
 		for _, n := range source {
@@ -36,7 +36,7 @@ func quadrate(in <-chan int) <-chan int {
 }
 
 func main() {
-	source := [...]int{2, 4, 6, 8, 10, 12, 14, 16, 18, 20, 22, 24, 26}
+	source := []int{2, 4, 6, 8, 10, 12, 14, 16, 18, 20, 22, 24, 26}
 
 	in := genesis(source)
 

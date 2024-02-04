@@ -20,7 +20,7 @@ func main() {
 	wg := sync.WaitGroup{}
 	wg.Add(5)
 
-	for i := range source {
+	for i := len(source) -1; i >= 0; i-- {
 		go func(i int) {
 			// атомарно прибавляем
 			atomic.AddInt64(&sum, source[i]*source[i])
