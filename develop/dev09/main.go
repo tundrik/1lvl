@@ -15,8 +15,8 @@ import (
 func genesis(source []int) <-chan int {
 	ch := make(chan int)
 	go func() {
-		for _, n := range source {
-			ch <- n
+		for i := len(source) -1; i >= 0; i-- {
+			ch <- source[i]
 		}
 		close(ch) // закрывает канал за собой
 	}()
