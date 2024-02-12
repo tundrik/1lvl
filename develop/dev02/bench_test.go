@@ -4,12 +4,13 @@ import (
 	"fmt"
 	"sync"
 	"testing"
+	//"time"
 )
 
 
 func BenchmarkOne(b *testing.B) {
 	b.StopTimer()
-	source := make([]uint16, 1000000*402)
+	source := make([]uint16, 1000000*360)
 	b.StartTimer()
 	for i := len(source) - 1; i >= 0; i-- {
 		source[i] = 74 * 6 * 9 / 6
@@ -20,7 +21,7 @@ func BenchmarkOne(b *testing.B) {
 
 func BenchmarkTwo(b *testing.B) {
 	b.StopTimer()
-	source := make([]uint16, 1000000*402)
+	source := make([]uint16, 1000000*360)
 	b.StartTimer()
 	for i := len(source) - 1; i >= 0; i -= 2 {
 		source[i] = 74 * 6 * 9 / 6
@@ -31,28 +32,34 @@ func BenchmarkTwo(b *testing.B) {
 }
 
 
+func work(chank []uint16, wg *sync.WaitGroup) {
+	for j := 0; j < len(chank); j++ {
+		// мутируем елемент исходного масива
+		chank[j] = 74 * 6 * 9 / 6
+	}
+	
+	wg.Done()
+}
+
 func BenchmarkMass(b *testing.B) {
 	b.StopTimer()
-	source := make([]uint16, 1000000*402)
+	source := make([]uint16, 1000000*360)
 	b.StartTimer()
 
-	numCpu := 6
+	numCpu := 4
 
 	part := len(source) / numCpu
 
 	wg := sync.WaitGroup{}
 	wg.Add(numCpu)
 	b.StartTimer()
+
 	for i := 0; i < numCpu; i++ {
-		go func(i int) {
-			offset := part * i // смещение откуда начинать
-			for j := offset; j < offset+part; j++ {
-				// мутируем елемент исходного масива
-				source[j] = 74 * 6 * 9 / 6
-			}
-			wg.Done()
-		}(i)
+		offset := part * i // смещение откуда начинать
+		chank := source[offset:offset+part]
+		go work(chank, &wg)
 	}
+
 	// ждем горутин
 	wg.Wait()
 
